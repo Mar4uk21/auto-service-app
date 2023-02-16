@@ -1,0 +1,23 @@
+databaseChangeLog:
+  - include:
+      file: /db/changelog/changes/create-products-table.sql
+  - include:
+      file: /db/changelog/changes/create-car-owners-table.sql
+  - include:
+      file: /db/changelog/changes/create-cars-table.sql
+  - include:
+      file: /db/changelog/changes/create-mechanics-table.sql
+  - include:
+      file: /db/changelog/changes/create-orders-table.sql
+  - include:
+      file: /db/changelog/changes/create-type-services-table.sql
+  - include:
+      file: /db/changelog/changes/create-mechanics-completed-orders-table.sql
+  - include:
+      file: /db/changelog/changes/create-car-owners-cars-table.sql
+  - include:
+      file: /db/changelog/changes/create-car-owners-orders-table.sql
+  - include:
+      file: /db/changelog/changes/create-orders-products-table.sql
+  - include:
+      file: /db/changelog/changes/create-orders-services-table.sql
