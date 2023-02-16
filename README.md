@@ -38,5 +38,4 @@ ___
     docker-compose up
 ```
 
-5. 🥳*Enjoy*🥳# auto-service-app
-# auto-service-app
+5. 🥳*Enjoy*🥳
