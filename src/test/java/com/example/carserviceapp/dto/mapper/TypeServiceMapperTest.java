@@ -45,7 +45,7 @@ class TypeServiceMapperTest {
         Mockito.when(masterService.get(TEST_TYPE_SERVICE_REQUEST_DTO.getMasterId())).thenReturn(TEST_MASTER);
         TypeService expected = new TypeService(null,orderService.get(TEST_TYPE_SERVICE_REQUEST_DTO.getOrderId()),
                 masterService.get(TEST_TYPE_SERVICE_REQUEST_DTO.getMasterId()),
-                TEST_TYPE_SERVICE_REQUEST_DTO.getPrice(),null);
+                TEST_TYPE_SERVICE_REQUEST_DTO.getPrice(),PaymentStatus.UNPAID);
         TypeService actual = mapper.mapToModel(TEST_TYPE_SERVICE_REQUEST_DTO);
         Assertions.assertEquals(actual.getOrder(), expected.getOrder());
         Assertions.assertEquals(actual.getMaster(), expected.getMaster());

@@ -2,7 +2,12 @@ package com.example.carserviceapp.dto.mapper;
 
 import com.example.carserviceapp.dto.request.OrderRequestDto;
 import com.example.carserviceapp.dto.response.OrderResponseDto;
-import com.example.carserviceapp.model.*;
+import com.example.carserviceapp.model.Car;
+import com.example.carserviceapp.model.CarOwner;
+import com.example.carserviceapp.model.Master;
+import com.example.carserviceapp.model.Order;
+import com.example.carserviceapp.model.Product;
+import com.example.carserviceapp.model.TypeService;
 import com.example.carserviceapp.model.enums.OrderStatus;
 import com.example.carserviceapp.model.enums.PaymentStatus;
 import com.example.carserviceapp.service.impl.CarServiceImpl;
@@ -23,7 +28,7 @@ import java.util.stream.Collectors;
 @ExtendWith(MockitoExtension.class)
 class OrderMapperTest {
     private static final OrderRequestDto TEST_ORDER_REQUEST_DTO = new OrderRequestDto(1L,"Change engine",
-            LocalDateTime.now(), List.of(1L,2L),List.of(1L,2L), OrderStatus.ACCEPTED, BigDecimal.valueOf(5000),LocalDateTime.now());
+            List.of(1L,2L),List.of(1L,2L));
     private static final List<Product> TEST_PRODUCTS = List.of(new Product(1L,"Engine",BigDecimal.valueOf(10000)));
     private static final Car TEST_CAR = new Car(1L,"BMW","E40",2022L,"777",new CarOwner());
     private static final List<TypeService> TEST_TYPE_SERVICES = List.of(new TypeService(1L,new Order(),
@@ -51,11 +56,10 @@ class OrderMapperTest {
         Mockito.when(typeServiceService.getAllTypeServices(TEST_ORDER_REQUEST_DTO.getServicesId()))
                 .thenReturn(TEST_TYPE_SERVICES);
         Order expected = new Order(null,carService.get(TEST_ORDER_REQUEST_DTO.getCarId()),
-                TEST_ORDER_REQUEST_DTO.getDescription(),TEST_ORDER_REQUEST_DTO.getDataOrder(),
+                TEST_ORDER_REQUEST_DTO.getDescription(),LocalDateTime.now(),
                 typeServiceService.getAllTypeServices(TEST_ORDER_REQUEST_DTO.getServicesId()),
                 productService.getAllProducts(TEST_ORDER_REQUEST_DTO.getProductsId()),
-                TEST_ORDER_REQUEST_DTO.getOrderStatus(),TEST_ORDER_REQUEST_DTO.getTotalPrice(),
-                TEST_ORDER_REQUEST_DTO.getTimeToFinish());
+                OrderStatus.ACCEPTED,BigDecimal.valueOf(0), null);
         Order actual = orderMapper.mapToModel(TEST_ORDER_REQUEST_DTO);
         Assertions.assertEquals(actual.getCar(), expected.getCar());
         Assertions.assertEquals(actual.getDescription(), expected.getDescription());
@@ -68,7 +72,8 @@ class OrderMapperTest {
 
     @Test
     void correctMappingOrderToOrderResponseDto() {
-        OrderResponseDto expected = new OrderResponseDto(TEST_ORDER.getId(),TEST_ORDER.getCar().getId(),TEST_ORDER.getDescription(),TEST_ORDER.getDataOrder(),
+        OrderResponseDto expected = new OrderResponseDto(TEST_ORDER.getId(),
+                TEST_ORDER.getCar().getId(),TEST_ORDER.getDescription(),TEST_ORDER.getDataOrder(),
                 TEST_ORDER.getServices().stream().map(TypeService::getId).collect(Collectors.toList()),
                 TEST_ORDER.getProducts().stream().map(Product::getId).collect(Collectors.toList()),
                 TEST_ORDER.getOrderStatus(),TEST_ORDER.getTotalPrice(),TEST_ORDER.getTimeToFinish());

@@ -5,9 +5,12 @@ import com.example.carserviceapp.dto.response.OrderResponseDto;
 import com.example.carserviceapp.model.Order;
 import com.example.carserviceapp.model.Product;
 import com.example.carserviceapp.model.TypeService;
+import com.example.carserviceapp.model.enums.OrderStatus;
 import com.example.carserviceapp.service.CarService;
 import com.example.carserviceapp.service.ProductService;
 import com.example.carserviceapp.service.TypeServiceService;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Component;
 
@@ -29,13 +32,12 @@ public class OrderMapper implements ResponseDtoMapper<OrderResponseDto, Order>,
     public Order mapToModel(OrderRequestDto dto) {
         Order order = new Order();
         order.setCar(carService.get(dto.getCarId()));
-        order.setDataOrder(dto.getDataOrder());
-        order.setOrderStatus(dto.getOrderStatus());
         order.setDescription(dto.getDescription());
         order.setProducts(productService.getAllProducts(dto.getProductsId()));
         order.setServices(typeServiceService.getAllTypeServices(dto.getServicesId()));
-        order.setTotalPrice(dto.getTotalPrice());
-        order.setTimeToFinish(dto.getTimeToFinish());
+        order.setTotalPrice(BigDecimal.valueOf(0));
+        order.setDataOrder(LocalDateTime.now());
+        order.setOrderStatus(OrderStatus.ACCEPTED);
         return order;
     }
 
