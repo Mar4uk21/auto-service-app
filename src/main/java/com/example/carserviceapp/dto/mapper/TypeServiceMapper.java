@@ -3,6 +3,7 @@ package com.example.carserviceapp.dto.mapper;
 import com.example.carserviceapp.dto.request.TypeServiceRequestDto;
 import com.example.carserviceapp.dto.response.TypeServiceResponseDto;
 import com.example.carserviceapp.model.TypeService;
+import com.example.carserviceapp.model.enums.PaymentStatus;
 import com.example.carserviceapp.service.MasterService;
 import com.example.carserviceapp.service.OrderService;
 import org.springframework.stereotype.Component;
@@ -24,7 +25,7 @@ public class TypeServiceMapper implements RequestDtoMapper<TypeServiceRequestDto
         typeService.setOrder(orderService.get(dto.getOrderId()));
         typeService.setMaster(masterService.get(dto.getMasterId()));
         typeService.setPrice(dto.getPrice());
-        typeService.setPaymentStatus(dto.getPaymentStatus());
+        typeService.setPaymentStatus(PaymentStatus.UNPAID);
         return typeService;
     }
 

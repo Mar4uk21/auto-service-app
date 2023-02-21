@@ -22,7 +22,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 @ExtendWith(MockitoExtension.class)
 class TypeServiceMapperTest {
     private static final TypeServiceRequestDto TEST_TYPE_SERVICE_REQUEST_DTO =
-            new TypeServiceRequestDto(1L,1L, BigDecimal.valueOf(1000), PaymentStatus.UNPAID);
+            new TypeServiceRequestDto(1L,1L, BigDecimal.valueOf(1000));
     private static final Master TEST_MASTER = new Master(1L,"Igor",null);
     private static final Order TEST_ORDER = new Order(1L,null,"Change engine",
             LocalDateTime.now(),null,null,
@@ -45,7 +45,7 @@ class TypeServiceMapperTest {
         Mockito.when(masterService.get(TEST_TYPE_SERVICE_REQUEST_DTO.getMasterId())).thenReturn(TEST_MASTER);
         TypeService expected = new TypeService(null,orderService.get(TEST_TYPE_SERVICE_REQUEST_DTO.getOrderId()),
                 masterService.get(TEST_TYPE_SERVICE_REQUEST_DTO.getMasterId()),
-                TEST_TYPE_SERVICE_REQUEST_DTO.getPrice(),TEST_TYPE_SERVICE_REQUEST_DTO.getPaymentStatus());
+                TEST_TYPE_SERVICE_REQUEST_DTO.getPrice(),null);
         TypeService actual = mapper.mapToModel(TEST_TYPE_SERVICE_REQUEST_DTO);
         Assertions.assertEquals(actual.getOrder(), expected.getOrder());
         Assertions.assertEquals(actual.getMaster(), expected.getMaster());
