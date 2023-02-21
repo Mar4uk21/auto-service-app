@@ -5,28 +5,16 @@ import com.example.carserviceapp.dto.response.CarOwnerResponseDto;
 import com.example.carserviceapp.model.Car;
 import com.example.carserviceapp.model.CarOwner;
 import com.example.carserviceapp.model.Order;
-import com.example.carserviceapp.service.CarService;
-import com.example.carserviceapp.service.OrderService;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Component;
 
 @Component
 public class CarOwnerMapper implements ResponseDtoMapper<CarOwnerResponseDto, CarOwner>,
         RequestDtoMapper<CarOwnerRequestDto, CarOwner> {
-    private final CarService carService;
-    private final OrderService orderService;
-
-    public CarOwnerMapper(CarService carService, OrderService orderService) {
-        this.carService = carService;
-        this.orderService = orderService;
-    }
 
     @Override
     public CarOwner mapToModel(CarOwnerRequestDto dto) {
-        CarOwner carOwner = new CarOwner();
-        carOwner.setCars(carService.getAllCars(dto.getCarsId()));
-        carOwner.setOrders(orderService.getAllOrders(dto.getOrdersId()));
-        return carOwner;
+        return new CarOwner();
     }
 
     @Override
