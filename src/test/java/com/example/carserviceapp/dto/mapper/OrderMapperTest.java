@@ -27,7 +27,7 @@ class OrderMapperTest {
     private static final List<Product> TEST_PRODUCTS = List.of(new Product(1L,"Engine",BigDecimal.valueOf(10000)));
     private static final Car TEST_CAR = new Car(1L,"BMW","E40",2022L,"777",new CarOwner());
     private static final List<TypeService> TEST_TYPE_SERVICES = List.of(new TypeService(1L,new Order(),
-            new Mechanic(),BigDecimal.valueOf(1000), PaymentStatus.UNPAID));
+            new Master(),BigDecimal.valueOf(1000), PaymentStatus.UNPAID));
     private static final Order TEST_ORDER = new Order(1L,TEST_CAR,"Change filter",
             LocalDateTime.now(),TEST_TYPE_SERVICES,TEST_PRODUCTS,OrderStatus.ACCEPTED,BigDecimal.valueOf(7000),LocalDateTime.now());
 

@@ -1,6 +1,6 @@
 package com.example.carserviceapp.service.impl;
 
-import com.example.carserviceapp.model.Mechanic;
+import com.example.carserviceapp.model.Master;
 import com.example.carserviceapp.model.Order;
 import com.example.carserviceapp.model.TypeService;
 import com.example.carserviceapp.model.enums.PaymentStatus;
@@ -24,7 +24,7 @@ class TypeServiceServiceImplTest {
 
     @Test
     void shouldReturnValidPaymentStatusPaid() {
-        Mockito.when(typeServiceRepository.getById(1L)).thenReturn(new TypeService(1L, new Order(), new Mechanic(),
+        Mockito.when(typeServiceRepository.getById(1L)).thenReturn(new TypeService(1L, new Order(), new Master(),
                 BigDecimal.valueOf(1000), PaymentStatus.UNPAID));
         TypeService actual = typeServiceService.get(1L);
         typeServiceService.changePaymentStatus(actual.getId());
@@ -33,7 +33,7 @@ class TypeServiceServiceImplTest {
 
     @Test
     void shouldReturnValidPaymentStatusUnpaid() {
-        Mockito.when(typeServiceRepository.getById(1L)).thenReturn(new TypeService(1L, new Order(), new Mechanic(),
+        Mockito.when(typeServiceRepository.getById(1L)).thenReturn(new TypeService(1L, new Order(), new Master(),
                 BigDecimal.valueOf(1000), PaymentStatus.PAID));
         TypeService actual = typeServiceService.get(1L);
         typeServiceService.changePaymentStatus(actual.getId());

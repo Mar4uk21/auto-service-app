@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class TypeServiceRequestDto {
     private Long orderId;
-    private Long mechanicId;
+    private Long masterId;
     private BigDecimal price;
     private PaymentStatus paymentStatus;
 }

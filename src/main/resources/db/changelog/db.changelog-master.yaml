@@ -6,13 +6,13 @@ databaseChangeLog:
   - include:
       file: /db/changelog/changes/create-cars-table.sql
   - include:
-      file: /db/changelog/changes/create-mechanics-table.sql
+      file: /db/changelog/changes/create-masters-table.sql
   - include:
       file: /db/changelog/changes/create-orders-table.sql
   - include:
       file: /db/changelog/changes/create-type-services-table.sql
   - include:
-      file: /db/changelog/changes/create-mechanics-completed-orders-table.sql
+      file: /db/changelog/changes/create-masters-completed-orders-table.sql
   - include:
       file: /db/changelog/changes/create-car-owners-cars-table.sql
   - include:

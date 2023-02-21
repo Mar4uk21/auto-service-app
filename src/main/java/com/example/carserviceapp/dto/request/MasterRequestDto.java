@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class MechanicRequestDto {
+public class MasterRequestDto {
     private String fullName;
     private List<Long> completedOrdersId;
 }

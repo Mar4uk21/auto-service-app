@@ -3,18 +3,18 @@ package com.example.carserviceapp.dto.mapper;
 import com.example.carserviceapp.dto.request.TypeServiceRequestDto;
 import com.example.carserviceapp.dto.response.TypeServiceResponseDto;
 import com.example.carserviceapp.model.TypeService;
-import com.example.carserviceapp.service.MechanicService;
+import com.example.carserviceapp.service.MasterService;
 import com.example.carserviceapp.service.OrderService;
 import org.springframework.stereotype.Component;
 
 @Component
 public class TypeServiceMapper implements RequestDtoMapper<TypeServiceRequestDto, TypeService>,
         ResponseDtoMapper<TypeServiceResponseDto, TypeService> {
-    private final MechanicService mechanicService;
+    private final MasterService masterService;
     private final OrderService orderService;
 
-    public TypeServiceMapper(MechanicService mechanicService, OrderService orderService) {
-        this.mechanicService = mechanicService;
+    public TypeServiceMapper(MasterService masterService, OrderService orderService) {
+        this.masterService = masterService;
         this.orderService = orderService;
     }
 
@@ -22,7 +22,7 @@ public class TypeServiceMapper implements RequestDtoMapper<TypeServiceRequestDto
     public TypeService mapToModel(TypeServiceRequestDto dto) {
         TypeService typeService = new TypeService();
         typeService.setOrder(orderService.get(dto.getOrderId()));
-        typeService.setMechanic(mechanicService.get(dto.getMechanicId()));
+        typeService.setMaster(masterService.get(dto.getMasterId()));
         typeService.setPrice(dto.getPrice());
         typeService.setPaymentStatus(dto.getPaymentStatus());
         return typeService;
@@ -33,7 +33,7 @@ public class TypeServiceMapper implements RequestDtoMapper<TypeServiceRequestDto
         TypeServiceResponseDto typeServiceResponseDto = new TypeServiceResponseDto();
         typeServiceResponseDto.setId(typeService.getId());
         typeServiceResponseDto.setOrderId(typeService.getOrder().getId());
-        typeServiceResponseDto.setMechanicId(typeService.getMechanic().getId());
+        typeServiceResponseDto.setMasterId(typeService.getMaster().getId());
         typeServiceResponseDto.setPrice(typeService.getPrice());
         typeServiceResponseDto.setPaymentStatus(typeService.getPaymentStatus());
         return typeServiceResponseDto;

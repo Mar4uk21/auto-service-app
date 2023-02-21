@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 public class TypeServiceResponseDto {
     private Long id;
     private Long orderId;
-    private Long mechanicId;
+    private Long masterId;
     private BigDecimal price;
     private PaymentStatus paymentStatus;
 }

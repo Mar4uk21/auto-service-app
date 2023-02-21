@@ -1,6 +1,6 @@
 package com.example.carserviceapp.service.impl;
 
-import com.example.carserviceapp.model.Mechanic;
+import com.example.carserviceapp.model.Master;
 import com.example.carserviceapp.model.Order;
 import com.example.carserviceapp.model.Product;
 import com.example.carserviceapp.model.TypeService;
@@ -55,8 +55,8 @@ public class OrderServiceImpl implements OrderService {
             order.setTimeToFinish(LocalDateTime.now());
         } else if (status == 4) {
             order.getServices().stream()
-                    .map(TypeService::getMechanic)
-                    .map(Mechanic::getCompletedOrders)
+                    .map(TypeService::getMaster)
+                    .map(Master::getCompletedOrders)
                     .map(orders -> orders.add(order))
                     .collect(Collectors.toList());
             order.setOrderStatus(OrderStatus.COMPLETED);

@@ -6,9 +6,9 @@ create table if not exists type_services
     primary key,
     payment_status varchar(255),
     price          numeric(19, 2),
-    mechanic_id    bigint
-    constraint fkstpslgb1xbh3fq8oa6ah8qc5l
-    references mechanics,
+    master_id      bigint
+    constraint fkk3e4fpabxq7boaflqsre5j11
+    references masters,
     order_id       bigint
     constraint fkihm7x3r1llikoq4oge8ua8hy8
     references orders
@@ -16,7 +16,5 @@ create table if not exists type_services
 
 alter table type_services
     owner to postgres;
-
-
 
 --rollback DROP TABLE type_services;

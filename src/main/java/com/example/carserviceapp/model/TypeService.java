@@ -29,7 +29,7 @@ public class TypeService {
     @ManyToOne(fetch = FetchType.LAZY)
     private Order order;
     @ManyToOne(fetch = FetchType.LAZY)
-    private Mechanic mechanic;
+    private Master master;
     private BigDecimal price;
     @Enumerated(EnumType.STRING)
     private PaymentStatus paymentStatus;
