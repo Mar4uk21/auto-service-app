@@ -2,13 +2,13 @@
 --changeset <postgres>:<create-masters-completed-orders-table>
 create table if not exists masters_completed_orders
 (
-    master_id           bigint not null
+    master_id          bigint not null
     constraint fkjxp2x9of5tc4smolrabx78lwf
     references masters,
-    completed_orders_id bigint not null
-    constraint uk_16w3uq9591nrn9fq878e3nt95
+    completed_order_id bigint not null
+    constraint uk_kvfmylu5py6nwaxsaomeo9pl3
     unique
-    constraint fk4icsu52vm1l2scqj0sroq3lcy
+    constraint fkpfde3tvro5je0k5uixpr4iaq4
     references orders
 );
 

@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -23,7 +25,13 @@ public class CarOwner {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @OneToMany
+    @JoinTable(name = "car_owners_cars",
+            joinColumns = @JoinColumn(name = "car_owner_id"),
+            inverseJoinColumns = @JoinColumn(name = "car_id"))
     private List<Car> cars;
     @OneToMany
+    @JoinTable(name = "car_owners_orders",
+            joinColumns = @JoinColumn(name = "car_owner_id"),
+            inverseJoinColumns = @JoinColumn(name = "order_id"))
     private List<Order> orders;
 }
