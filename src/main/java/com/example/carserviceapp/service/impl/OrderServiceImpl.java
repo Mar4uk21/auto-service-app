@@ -23,6 +23,10 @@ public class OrderServiceImpl implements OrderService {
 
     public OrderServiceImpl(OrderRepository orderRepository) {
         this.orderRepository = orderRepository;
+        orderStatusHashMap.put(1,OrderStatus.ACCEPTED);
+        orderStatusHashMap.put(2,OrderStatus.DURING);
+        orderStatusHashMap.put(3,OrderStatus.UNCOMPLETED);
+        orderStatusHashMap.put(4,OrderStatus.COMPLETED);
     }
 
     @Override
@@ -47,10 +51,6 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public void changeOrderStatus(Long id, int status) {
-        orderStatusHashMap.put(1,OrderStatus.ACCEPTED);
-        orderStatusHashMap.put(2,OrderStatus.DURING);
-        orderStatusHashMap.put(3,OrderStatus.UNCOMPLETED);
-        orderStatusHashMap.put(4,OrderStatus.COMPLETED);
         Order order = orderRepository.getById(id);
         order.setOrderStatus(orderStatusHashMap.get(status));
         if (status == 4) {
