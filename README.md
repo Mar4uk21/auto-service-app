@@ -16,7 +16,7 @@ ___
 | `Orders`        | POST: `/orders`,`/{orderId}/{productId}`<br/>PUT:`/{id}`, `/{id}/{statusCode}`<br/>  GET:`/{id}/totalPrice` |  
 | `Type-Services` |                           POST: `/type-services`<br/>PUT:`/{id}`, `/{id}/change`                            |
 | `Products`      |                                      POST: `/products`<br/>PUT:`/{id}`                                      |
-#### Or you can you Swagger and read more information about this endpoints: http://localhost:8080/swagger-ui.html#/ (if you use docker use this link http://localhost:6868/swagger-ui.html#/)
+#### Or you can use Swagger and read more information about this endpoints: http://localhost:8080/swagger-ui.html#/ (if you use docker use this link http://localhost:6868/swagger-ui.html#/)
 ## 💻Technologies💻
 ___
 | **Technology** | **Version** |
